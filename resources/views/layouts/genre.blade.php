@@ -4,10 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Silver Screen Saga | {{ $title }}</title>
+    <title>Silver Screen Saga - Genre</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Tambahkan gaya kustom di sini jika diperlukan */
+        /* Misalnya, styling untuk navbar, container, dll. */
+        .bg-body-tertiary {
+            background-color: #f8f9fa; /* Warna background */
+        }
+
+        /* Gaya kustom lainnya */
+    </style>
 </head>
 
 <body>
@@ -28,31 +36,25 @@
                         <a class="nav-link" href="/genre">Genre</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/community">community</a>
+                        <a class="nav-link" href="/community">Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/store">
-                            Store
-                        </a>
+                        <a class="nav-link" href="/store">Store</a>
                     </li>
                     <li class="nav-item d-flex">
-                        <a class="nav-link" href="/login">
-                            Login
-                        </a>
+                        <a class="nav-link" href="/login">Login</a>
                     </li>
                     <li class="nav-item d-flex">
-                        <a class="nav-link" href="/register">
-                            Register
-                        </a>
+                        <a class="nav-link" href="/register">Register</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    @include('partials.navbar')
 
     <div class="container mt-4">
-        @yield('container')
+        <h1>Genre</h1>
+        @yield('content')
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
