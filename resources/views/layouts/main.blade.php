@@ -27,7 +27,7 @@
                         <a class="nav-link" href="/genre">Genre</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/community">Community</a>
+                        <a class="nav-link" href="/community">community</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/store">
