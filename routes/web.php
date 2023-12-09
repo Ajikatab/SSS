@@ -8,8 +8,6 @@ use app\Http\Controllers\MoviesController;
 use app\Http\Controllers\LoginController;
 use App\Http\Controllers\GenreController;
 
-=======
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,8 +30,6 @@ Route::get('/recent-discussions', 'DiscussionsController@index');
 Route::get('/latest-reviews', 'ReviewsController@index');
 Route::get('/genre/{genre}', [GenreController::class, 'showGenre']);
 Route::get('/genre', [GenreController::class, 'index']);
-=======
-
 
 Route::get('/', function () {
     return view('home', [
