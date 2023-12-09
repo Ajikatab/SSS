@@ -64,5 +64,14 @@ Route::get('/register', function () {
 });
 
 Route::get('/genre', function () {
-    return view('genre');
+    return view('genre', [
+        'title' => 'genre'
+    ]);
+});
+
+
+Route::get('/action', function () {
+    return view('genre.action', [
+        'title' => 'Action'
+    ]);
 });
