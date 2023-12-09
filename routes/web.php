@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SeassionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,11 +25,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/login', function () {
-    return view('login', [
-        "title" => "Login"
-    ]);
-});
+
+// Route::get('/login', function () {
+//     return view('login', [
+//         "title" => "Login"
+//     ]);
+// });
+
+Route::get('/login', [SeassionController::class,'index']);
+
+Route::post('/login', [SeassionController::class,'login']);
 
 
 Route::get('/community', [ReviewController::class, 'index']);
