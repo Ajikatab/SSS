@@ -1,4 +1,4 @@
-@extends('layouts.genre')
+@extends('layouts.main')
 
 @section('container')
     <h2>Action Movies</h2>
