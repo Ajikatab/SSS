@@ -1,10 +1,7 @@
 <?php
 
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\HomeController;
-use app\Http\Controllers\MoviesController;
-use app\Http\Controllers\LoginController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -19,29 +16,31 @@ use app\Http\Controllers\LoginController;
 
 
 
-Route::get('/', 'HomeController@index');
-Route::get('/login', 'LoginController@index');
-Route::get('/movies', 'MoviesController@index');
-Route::get('/top-movies', 'MoviesController@topMovies');
-Route::get('/recent-discussions', 'DiscussionsController@index');
-Route::get('/latest-reviews', 'ReviewsController@index');
+
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        "title" => "Home"
+    ]);
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('login', [
+        "title" => "Login"
+    ]);
 });
 
-Route::get('/community', function () {
-    return view('community');
-});
+
+Route::get('/community', [ReviewController::class, 'index']);
 
 Route::get('/store', function () {
-    return view('store');
+    return view('store', [
+        "title" => "Store"
+    ]);
 });
 
 Route::get('/register', function () {
-    return view('register');
+    return view('register', [
+        "title" => "Register"
+    ]);
 });
