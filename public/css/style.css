@@ -331,3 +331,47 @@ body {
 .sign a:hover {
     background: rgba(0, 0, 0, 0.3);
 }
+
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Main styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.col-md-3 {
+    flex-basis: calc(25% - 10px);
+    margin-bottom: 20px;
+    background-color: #00c1b3; /* Ubah sesuai dengan warna latar belakang yang diinginkan */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.col-md-3 a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; /* Efek kontur hitam */
+}
+
+.col-md-3 a:hover {
+    color: #eeeeee; /* Ubah warna teks saat dihover jika diperlukan */
+}
