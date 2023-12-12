@@ -7,6 +7,7 @@ use app\Http\Controllers\HomeController;
 use app\Http\Controllers\MoviesController;
 use app\Http\Controllers\LoginController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\MerchandiseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,24 +39,14 @@ Route::get('/', function () {
 });
 
 
-// Route::get('/login', function () {
-//     return view('login', [
-//         "title" => "Login"
-//     ]);
-// });
+Route::get('/login', [SeassionController::class, 'index']);
 
-Route::get('/login', [SeassionController::class,'index']);
-
-Route::post('/login', [SeassionController::class,'login']);
+Route::post('/login', [SeassionController::class, 'login']);
 
 
 Route::get('/community', [ReviewController::class, 'index']);
 
-Route::get('/store', function () {
-    return view('store', [
-        "title" => "Store"
-    ]);
-});
+Route::get('/store', [MerchandiseController::class, 'index']);
 
 Route::get('/register', function () {
     return view('register', [
@@ -73,105 +64,5 @@ Route::get('/genre', function () {
 Route::get('/action', function () {
     return view('genre.action', [
         'title' => 'Action'
-    ]);
-});
-Route::get('/adventure', function () {
-    return view('genre.adventure', [
-        'title' => 'Adventure'
-    ]);
-});
-Route::get('/animation', function () {
-    return view('genre.animation', [
-        'title' => 'Animation'
-    ]);
-});
-Route::get('/anime', function () {
-    return view('genre.anime', [
-        'title' => 'Anime'
-    ]);
-});
-Route::get('/biography', function () {
-    return view('genre.biography', [
-        'title' => 'Biography'
-    ]);
-});
-Route::get('/comedy', function () {
-    return view('genre.comedy', [
-        'title' => 'Comedy'
-    ]);
-});
-Route::get('/Crime', function () {
-    return view('genre.crime', [
-        'title' => 'Crime'
-    ]);
-});
-Route::get('/documentary', function () {
-    return view('genre.documentary', [
-        'title' => 'Documentary'
-    ]);
-});
-Route::get('/drama', function () {
-    return view('genre.drama', [
-        'title' => 'Drama'
-    ]);
-});
-Route::get('/family', function () {
-    return view('genre.family', [
-        'title' => 'Family'
-    ]);
-});
-Route::get('/fantasy', function () {
-    return view('genre.fantasy', [
-        'title' => 'Fantasy'
-    ]);
-});
-Route::get('/history', function () {
-    return view('genre.history', [
-        'title' => 'History'
-    ]);
-});
-Route::get('/horror', function () {
-    return view('genre.horror', [
-        'title' => 'Horror'
-    ]);
-});
-Route::get('/music', function () {
-    return view('genre.music', [
-        'title' => 'Music'
-    ]);
-});
-Route::get('/mystery', function () {
-    return view('genre.mystery', [
-        'title' => 'Mystery'
-    ]);
-});
-Route::get('/romance', function () {
-    return view('genre.romance', [
-        'title' => 'Romance'
-    ]);
-});
-Route::get('/sciencefiction', function () {
-    return view('genre.sciencefiction', [
-        'title' => 'Science Fiction'
-    ]);
-});
-Route::get('/sport', function () {
-    return view('genre.sport', [
-        'title' => 'Sport'
-    ]);
-});
-Route::get('/thriller', function () {
-    return view('genre.thriller', [
-        'title' => 'Thriller'
-    ]);
-});
-Route::get('/war', function () {
-    return view('genre.war', [
-        'title' => 'War'
-    ]);
-});
-Route::get('/western', function () {
-    return view('genre.western', [
-        'title' => 'Western'
     ]);
 });
