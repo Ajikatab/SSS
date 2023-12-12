@@ -7,6 +7,7 @@ use app\Http\Controllers\HomeController;
 use app\Http\Controllers\MoviesController;
 use app\Http\Controllers\LoginController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\MerchandiseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,24 +39,14 @@ Route::get('/', function () {
 });
 
 
-// Route::get('/login', function () {
-//     return view('login', [
-//         "title" => "Login"
-//     ]);
-// });
+Route::get('/login', [SeassionController::class, 'index']);
 
-Route::get('/login', [SeassionController::class,'index']);
-
-Route::post('/login', [SeassionController::class,'login']);
+Route::post('/login', [SeassionController::class, 'login']);
 
 
 Route::get('/community', [ReviewController::class, 'index']);
 
-Route::get('/store', function () {
-    return view('store', [
-        "title" => "Store"
-    ]);
-});
+Route::get('/store', [MerchandiseController::class, 'index']);
 
 Route::get('/register', function () {
     return view('register', [
