@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardGenreController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SeassionController;
 use Illuminate\Support\Facades\Route;
@@ -59,3 +60,5 @@ Route::get('/dashboard', function () {
         "title" => "Dashboard",
     ]);
 });
+
+Route::resource('/dashboard/genre', DashboardGenreController::class);

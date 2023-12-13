@@ -17,6 +17,7 @@ class CreateMerchandisesTable extends Migration
     {
         Schema::create('merchandises', function (Blueprint $table) {
             $table->id('merchandise_id');
+            $table->string('image');
             $table->string('name');
             $table->text('description');
             $table->decimal('price', 10, 2);
