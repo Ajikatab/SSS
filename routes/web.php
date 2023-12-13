@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SeassionController;
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\HomeController;
 use app\Http\Controllers\MoviesController;
-use app\Http\Controllers\LoginController;
 use App\Http\Controllers\GenreController;
 
 /*
@@ -44,7 +44,7 @@ Route::get('/', function () {
 //     ]);
 // });
 
-Route::get('/login', [SeassionController::class,'index']);
+Route::get('/login', [SeassionController::class,'login']);
 
 Route::post('/login', [SeassionController::class,'login']);
 
@@ -57,11 +57,10 @@ Route::get('/store', function () {
     ]);
 });
 
-Route::get('/register', function () {
-    return view('register', [
-        "title" => "Register"
-    ]);
-});
+Route::get('/register', [RegisterController::class,'index']);
+Route::post('/register', [RegisterController::class,'store']);
+
+
 
 Route::get('/genre', function () {
     return view('genre', [
