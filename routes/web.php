@@ -3,11 +3,9 @@
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SeassionController;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\HomeController;
-use app\Http\Controllers\MoviesController;
-use app\Http\Controllers\LoginController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MerchandiseController;
+use App\Models\Genre;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,17 +19,6 @@ use App\Http\Controllers\MerchandiseController;
 */
 
 
-
-
-Route::get('/', 'HomeController@index');
-Route::get('/login', 'LoginController@index');
-Route::get('/movies', 'MoviesController@index');
-Route::get('/top-movies', 'MoviesController@topMovies');
-Route::get('/recent-discussions', 'DiscussionsController@index');
-Route::get('/latest-reviews', 'ReviewsController@index');
-Route::get('/genre/{genre}', [GenreController::class, 'showGenre']);
-Route::get('/genre', [GenreController::class, 'index']);
-
 Route::get('/', function () {
     return view('home', [
         "title" => "Home"
@@ -43,6 +30,19 @@ Route::get('/login', [SeassionController::class, 'index']);
 
 Route::post('/login', [SeassionController::class, 'login']);
 
+Route::get('/genre/{genre}', function ($genre) {
+    return view('genre.' . strtolower($genre), [
+        'title' => $genre
+    ]);
+});
+
+Route::get('/genre', function () {
+    $genres = Genre::all();
+    return view('genre', [
+        'title' => 'Genre',
+        'genres' => $genres
+    ]);
+});
 
 Route::get('/community', [ReviewController::class, 'index']);
 
@@ -54,15 +54,8 @@ Route::get('/register', function () {
     ]);
 });
 
-Route::get('/genre', function () {
-    return view('genre', [
-        'title' => 'genre'
-    ]);
-});
-
-
-Route::get('/action', function () {
-    return view('genre.action', [
-        'title' => 'Action'
+Route::get('/dashboard', function () {
+    return view('dashboard.dashboard', [
+        "title" => "Dashboard",
     ]);
 });
