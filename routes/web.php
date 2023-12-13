@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\DashboardGenreController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SeassionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MerchandiseController;
 use App\Models\Genre;
 
@@ -27,7 +27,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', [SeassionController::class, 'index']);
+
+Route::get('/login', [SeassionController::class, 'login']);
 
 Route::post('/login', [SeassionController::class, 'login']);
 
@@ -49,11 +50,16 @@ Route::get('/community', [ReviewController::class, 'index']);
 
 Route::get('/store', [MerchandiseController::class, 'index']);
 
-Route::get('/register', function () {
-    return view('register', [
-        "title" => "Register"
-    ]);
-});
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
+
+
+
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard', [

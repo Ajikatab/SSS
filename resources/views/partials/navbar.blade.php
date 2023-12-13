@@ -25,7 +25,7 @@
                 </li>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">
+                        <a href="/login" class="nav-link {{ $title === 'login' ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right"></i"></i>
                             Login
                         </a>
                     </li>

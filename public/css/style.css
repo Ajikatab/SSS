@@ -1,3 +1,42 @@
+.navbar .login-btn {
+    border: none;
+    outline: none;
+    background: #fff;
+    color: #275360;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+.form-details {
+    padding: 0 20px;
+    background: url("images/signup-img.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 1rem;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="username"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 table {
     border-collapse: collapse;
     width: 100%;
