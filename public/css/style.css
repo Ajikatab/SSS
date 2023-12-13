@@ -370,3 +370,43 @@ body {
 .sign a:hover {
     background: rgba(0, 0, 0, 0.3);
 }
+
+body,
+h1,
+h2,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Main styles */
+body {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Tombol Genre */
+.genre-button {
+    display: block;
+    width: 95%;
+    height: auto;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px; /* Mengatur padding untuk membuat tombol lebih besar */
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    background-color: #00c1b3;
+    transition: background-color 0.3s ease;
+    margin: 0 auto 10px;
+}
