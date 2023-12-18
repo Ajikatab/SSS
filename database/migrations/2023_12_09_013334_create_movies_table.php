@@ -22,9 +22,9 @@ class CreateMoviesTable extends Migration
             $table->string('director');
             $table->text('description');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('category_id')->on('categories');
             $table->string('poster_url');
             $table->timestamps();
+            $table->foreign('category_id')->references('category_id')->on('categories');
         });
     }
 

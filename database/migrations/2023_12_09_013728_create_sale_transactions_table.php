@@ -22,7 +22,7 @@ class CreateSaleTransactionsTable extends Migration
             $table->integer('quantity');
             $table->decimal('total_amount', 10, 2);
             $table->timestamp('transaction_date')->useCurrent();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('merchandise_id')->references('merchandise_id')->on('merchandises');
             $table->timestamps();
         });

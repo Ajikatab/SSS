@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardGenreController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SeassionController;
@@ -48,8 +49,8 @@ Route::get('/community', [ReviewController::class, 'index']);
 
 Route::get('/store', [MerchandiseController::class, 'index']);
 
-Route::get('/register', [RegisterController::class,'index']);
-Route::post('/register', [RegisterController::class,'store']);
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
 
 
 
@@ -64,3 +65,5 @@ Route::get('/dashboard', function () {
         "title" => "Dashboard",
     ]);
 });
+
+Route::resource('/dashboard/genre', DashboardGenreController::class);

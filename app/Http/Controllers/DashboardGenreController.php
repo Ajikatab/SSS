@@ -13,7 +13,11 @@ class DashboardGenreController extends Controller
      */
     public function index()
     {
-        //
+        $genres = Genre::all();
+        return view('dashboard.genre', [
+            'title' => 'Genre',
+            'genres' => $genres
+        ]);
     }
 
     /**
@@ -37,7 +41,9 @@ class DashboardGenreController extends Controller
      */
     public function show(Genre $genre)
     {
-        //
+        return view('dashboard.genre.show', [
+            'genre' => $genre
+        ]);
     }
 
     /**
