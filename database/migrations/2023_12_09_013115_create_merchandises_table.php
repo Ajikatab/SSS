@@ -16,7 +16,7 @@ class CreateMerchandisesTable extends Migration
     public function up()
     {
         Schema::create('merchandises', function (Blueprint $table) {
-            $table->id('merchandise_id');
+            $table->id();
             $table->string('image');
             $table->string('name');
             $table->text('description');

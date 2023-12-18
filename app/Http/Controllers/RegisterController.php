@@ -10,7 +10,7 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('register',[
+        return view('register', [
             'title' => 'Register',
             'active' => 'register'
         ]);
@@ -18,16 +18,14 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-       $validateData = $request -> validate([
+        $validateData = $request->validate([
             'username' => 'required|min:8|unique:users',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:8|max:20'
-       ]);
+        ]);
 
-      User::create($validateData);
+        User::create($validateData);
 
-      $request->session()->flash('success', 'Registration successfull! Please Login');
-
-      return redirect('/login');
+        return redirect('/login')->with('status', 'Registration successfull! Please Login');
     }
 }

@@ -17,12 +17,27 @@ class SeassionController extends Controller
     }
     public function authenticate(request $request)
     {
-        $request->validate([
-            'email' => 'required|email:dns',
+        $credentials = $request->validate([
+            'username' => 'required|min:8',
             'password' => 'required'
         ]);
 
-        dd('berhasil login');
-    }
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
 
+            if ($user->role === 'admin') {
+                return redirect()->route('dashboard.dashboard'); // Redirect to admin dashboard
+            } elseif ($user->role === 'user') {
+                return redirect()->route('user.home'); // Redirect to user home page
+            }
+        }
+
+        return back()->withErrors(['username' => 'Invalid username or password']);
+    }
+    public function logout()
+    {
+        auth()->logout();
+
+        return redirect('/'); // Ganti dengan rute yang sesuai setelah logout
+    }
 }

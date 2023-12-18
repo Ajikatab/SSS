@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardGenreController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SeassionController;
@@ -20,23 +21,20 @@ use App\Models\Genre;
 */
 
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home"
-    ]);
-});
-
-
-
-Route::get('/login', [SeassionController::class,'login']);
+// Rute yang dapat diakses oleh semua orang
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/login', [SeassionController::class, 'login'])->name('login');
 Route::post('/login', [SeassionController::class, 'authenticate']);
-
+Route::post('/logout', [SeassionController::class, 'logout'])->name('logout');
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/community', [ReviewController::class, 'index']);
+Route::get('/store', [MerchandiseController::class, 'index']);
 Route::get('/genre/{genre}', function ($genre) {
     return view('genre.' . strtolower($genre), [
         'title' => $genre
     ]);
 });
-
 Route::get('/genre', function () {
     $genres = Genre::all();
     return view('genre', [
@@ -45,21 +43,27 @@ Route::get('/genre', function () {
     ]);
 });
 
-Route::get('/community', [ReviewController::class, 'index']);
 
-Route::get('/store', [MerchandiseController::class, 'index']);
+// Rute-rute dengan middleware 'auth' (hanya dapat diakses oleh pengguna yang sudah login)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/home', [HomeController::class, 'userHome'])->name('user.home');
+    Route::get('/user/genre/{genre}', function ($genre) {
+        return view('genre.' . strtolower($genre), [
+            'title' => $genre
+        ]);
+    })->name('user.genre');
+    Route::get('/user/genre', function () {
+        $genres = Genre::all();
+        return view('genre', [
+            'title' => 'Genre',
+            'genres' => $genres
+        ]);
+    })->name('user.genre.index');
+    Route::get('/user/community', [ReviewController::class, 'index'])->name('user.community');
+    Route::get('/user/store', [MerchandiseController::class, 'index'])->name('user.store');
+});
 
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'store']);
-
-
-
-
-
-
-
-
-
+// Rute-rute lainnya yang dapat diakses oleh semua orang
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard', [
         "title" => "Dashboard",

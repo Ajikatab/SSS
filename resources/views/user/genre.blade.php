@@ -1,10 +1,11 @@
-@extends('dashboard.layouts.main')
+@extends('user.layouts.main')
+
 @section('container')
     <h1>Genre</h1>
     @foreach ($genres as $genre)
         <div class="row">
             <div class="col-md-3">
-                <a href="{{ url('/genre/{genre}' . strtolower($genre->category_name)) }}"
+                <a href="{{ url('user/genre/' . strtolower($genre->category_name)) }}"
                     class="genre-button">{{ $genre->category_name }}</a>
             </div>
         </div>

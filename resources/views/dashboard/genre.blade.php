@@ -19,7 +19,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $genre->category_name }}</td>
                         <td>
-                            <a href="/dashboard/genre/{{ $genre->category_id }}" class="badge bg-info"><i
+                            <a href="/dashboard/genre/{{ $genre->category_name }}" class="badge bg-info"><i
                                     class="bi bi-eye"></i></a>
                             <a href="" class="badge bg-warning"><i class="bi bi-pencil-square"></i></a>
                             <a href="" class="badge bg-danger"><i class="bi bi-x-circle"></i></a>

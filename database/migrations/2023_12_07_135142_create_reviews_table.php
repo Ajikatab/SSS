@@ -9,7 +9,7 @@ class CreateReviewsTable extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->id('review_id');
+            $table->id();
             // $table->unsignedBigInteger('user_id');
             $table->string('username');
             // $table->unsignedBigInteger('movie_id');
