@@ -28,8 +28,7 @@ Route::get('/', function () {
 
 
 Route::get('/login', [SeassionController::class,'login']);
-
-Route::post('/login', [SeassionController::class, 'login']);
+Route::post('/login', [SeassionController::class, 'authenticate']);
 
 Route::get('/genre/{genre}', function ($genre) {
     return view('genre.' . strtolower($genre), [
