@@ -21,10 +21,10 @@ class CreateMoviesTable extends Migration
             $table->integer('release_year');
             $table->string('director');
             $table->text('description');
-            $table->unsignedBigInteger('category_id');
+            // $table->unsignedBigInteger('category_id');
             $table->string('poster_url');
             $table->timestamps();
-            $table->foreign('category_id')->references('category_id')->on('categories');
+            // $table->foreign('category_id')->references('category_id')->on('categories');
         });
     }
 
