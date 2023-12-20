@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('edit', [UpdateProfileInformationController::class, 'edit'])->name('profile.edit');
     Route::put('update', [UpdateProfileInformationController::class, 'update'])->name('profile.update');
     Route::get('/user/store', [MerchandiseController::class, 'index'])->name('user.store');
-}); 
+});
 
 // Rute-rute lainnya yang dapat diakses oleh semua orang
 Route::get('/dashboard', function () {

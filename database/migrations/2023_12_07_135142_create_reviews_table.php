@@ -15,6 +15,7 @@ class CreateReviewsTable extends Migration
             // $table->unsignedBigInteger('movie_id');
             $table->decimal('rating', 3, 1);
             $table->text('comment');
+            $table->string('image');
             $table->timestamp('review_date')->useCurrent();
             $table->timestamps();
 
