@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardGenreController;
+use App\Http\Controllers\DashboardMerchandiseController;
+use App\Http\Controllers\DashboardMovieController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewController;
@@ -73,4 +75,11 @@ Route::get('/dashboard', function () {
     ]);
 });
 
+Route::get('/dashboard/store/{id}', [DashboardMerchandiseController::class, 'edit'])->name('store.edit');
+Route::put('/dashboard/store/{id}/update', [DashboardMerchandiseController::class, 'update'])->name('store.update');
+
+
+
 Route::resource('/dashboard/genre', DashboardGenreController::class);
+Route::resource('/dashboard/store', DashboardMerchandiseController::class);
+Route::resource('/dashboard/movie', DashboardMovieController::class);
