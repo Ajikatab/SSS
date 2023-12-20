@@ -12,7 +12,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $review->username }}</h5>
                                 <p class="card-text">{{ $review->comment }}</p>
-                                <p class="card-text"><small class="text-muted">{{ $review->review_date }}</small></p>
+                                <p class="card-text"><small
+                                        class="text-muted">{{ $review->created_at->DiffForHumans() }}</small></p>
                                 <p class="card-text">Rating: {{ $review->rating }}</p>
                             </div>
                         </div>
