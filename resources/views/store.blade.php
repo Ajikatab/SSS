@@ -9,7 +9,6 @@
                 <p>{{ $store->description }}</p>
                 <p>{{ $store->price }}</p> <br>
                 <p>{{ $store->stock_quantity }}</p>
-                <a href=''>Buy Now</a>
             </div>
         @endforeach
     @endsection

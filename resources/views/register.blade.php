@@ -18,7 +18,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="form-floating">
+                    <div class="form-floating mt-3">
                         <input type="email" name='email'
                             class="form-control rounded-top @error('email') is-invalid @enderror" id="email"
                             placeholder="name@example.com" required value="{{ old('email') }}">
@@ -29,7 +29,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="form-floating">
+                    <div class="form-floating mt-3">
                         <input type="password" name='password'
                             class="form-control rounded-top @error('password') is-invalid @enderror" id="password"
                             placeholder="Password" required value="{{ old('password') }}">

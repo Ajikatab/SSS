@@ -3,28 +3,25 @@
 @section('container')
     <h1>Movie Reviews</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Username</th>
-                <th>Comment</th>
-                <th>Review Date</th>
-                <th>Rating</th>
-                <th>Movie</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($reviews as $review)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $review->username }}</td> <!-- Sesuaikan dengan nama kolom di tabel -->
-                    <td>{{ $review->comment }}</td>
-                    <td>{{ $review->review_date }}</td>
-                    <td>{{ $review->rating }}</td>
-                    <td>{{ $review->image }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="row">
+        @foreach ($reviews as $review)
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $review->username }}</h5>
+                                <p class="card-text">{{ $review->comment }}</p>
+                                <p class="card-text"><small class="text-muted">{{ $review->review_date }}</small></p>
+                                <p class="card-text">Rating: {{ $review->rating }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{{ $review->image }}" class="card-img" alt="{{ $review->username }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
 @endsection

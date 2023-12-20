@@ -62,10 +62,13 @@ Route::middleware(['auth'])->group(function () {
             'genres' => $genres
         ]);
     })->name('user.genre');
-    Route::get('/user/community', [ReviewController::class, 'index'])->name('user.community');
+    Route::get('/user/community', [ReviewController::class, 'userHome'])->name('user.community');
     Route::get('edit', [UpdateProfileInformationController::class, 'edit'])->name('profile.edit');
     Route::put('update', [UpdateProfileInformationController::class, 'update'])->name('profile.update');
-    Route::get('/user/store', [MerchandiseController::class, 'index'])->name('user.store');
+    Route::get('/user/store', [MerchandiseController::class, 'userHome'])->name('user.store');
+
+    Route::get('/genre/create', [ReviewController::class, 'create'])->name('posts.create');
+    Route::post('/genre', [ReviewController::class, 'store'])->name('posts.store');
 });
 
 // Rute-rute lainnya yang dapat diakses oleh semua orang

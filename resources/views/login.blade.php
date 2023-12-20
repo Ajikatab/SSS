@@ -13,7 +13,7 @@
                 <form action="/login" method="post">
                     @csrf
                     <h1 class="h3 mb-3 fw-normal text-center">Please Login</h1>
-                    <div class="form-floating">
+                    <div class="form-floating mt-3">
                         <input type="username" name='username' class="form-control @error('username') is-invalid @enderror"
                             id="username" placeholder="Username" autofocus required value="{{ old('username') }}">
                         <label for="username">Username </label>
@@ -23,7 +23,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="form-floating">
+                    <div class="form-floating mt-3">
                         <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                             id="password" placeholder="Password" required>
                         <label for="password">Password</label>
