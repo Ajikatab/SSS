@@ -12,7 +12,7 @@
                         href="/">Home</a>
                 </li>
                 <li class="nav-item {{ $title === 'Genre' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('user/genre') }}">Genre</a>
+                    <a class="nav-link" href="{{ route('user.genre') }}">Genre</a>
                 </li>
                 <li class="nav-item {{ $title === 'Community' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('user.community') }}">Community</a>
@@ -25,7 +25,7 @@
             <ul class="navbar-nav ms-auto">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ Auth::user()->username }}</a>
+                        <a class="nav-link" href="{{ route('profile.edit') }}">{{ Auth::user()->username }}</a>
                     </li>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf

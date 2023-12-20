@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SeassionController;
+use App\Http\Controllers\UpdateProfileInformationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MerchandiseController;
 use App\Models\Genre;
@@ -47,7 +48,7 @@ Route::get('/genre', function () {
 // Rute-rute dengan middleware 'auth' (hanya dapat diakses oleh pengguna yang sudah login)
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/home', [HomeController::class, 'userHome'])->name('user.home');
-    Route::get('/user/genre/{genre}', function ($genre) {
+    Route::get('/genre/{genre}', function ($genre) {
         return view('genre.' . strtolower($genre), [
             'title' => $genre
         ]);
@@ -58,10 +59,12 @@ Route::middleware(['auth'])->group(function () {
             'title' => 'Genre',
             'genres' => $genres
         ]);
-    })->name('user.genre.index');
+    })->name('user.genre');
     Route::get('/user/community', [ReviewController::class, 'index'])->name('user.community');
+    Route::get('edit', [UpdateProfileInformationController::class, 'edit'])->name('profile.edit');
+    Route::put('update', [UpdateProfileInformationController::class, 'update'])->name('profile.update');
     Route::get('/user/store', [MerchandiseController::class, 'index'])->name('user.store');
-});
+}); 
 
 // Rute-rute lainnya yang dapat diakses oleh semua orang
 Route::get('/dashboard', function () {
