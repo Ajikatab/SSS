@@ -5,7 +5,15 @@
     <div class="flex">
         <div class="w-full lg:w-1/2"></div>
         <div class="bg-white p-6 rounded-lg shadow-md w-1/2">
+        @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <form action="{{ route('profile.update') }}" method="post">
+                @method('PUT')
                 @csrf
 
                 <!-- Bagian Edit Username -->
