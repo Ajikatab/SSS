@@ -54,13 +54,13 @@ Route::middleware(['auth'])->group(function () {
     })->name('user.genre');
     Route::get('/user/genre', function () {
         $genres = Genre::all();
-        return view('genre', [
+        return view('user.genre', [
             'title' => 'Genre',
             'genres' => $genres
         ]);
-    })->name('user.genre.index');
-    Route::get('/user/community', [ReviewController::class, 'index'])->name('user.community');
-    Route::get('/user/store', [MerchandiseController::class, 'index'])->name('user.store');
+    })->name('user.genre');
+    Route::get('/user/community', [ReviewController::class, 'userHome'])->name('user.community');
+    Route::get('/user/store', [MerchandiseController::class, 'UserHome'])->name('user.store');
 });
 
 // Rute-rute lainnya yang dapat diakses oleh semua orang
