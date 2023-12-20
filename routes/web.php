@@ -55,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('user.genre');
     Route::get('/user/genre', function () {
         $genres = Genre::all();
-        return view('genre', [
+        return view('user.genre', [
             'title' => 'Genre',
             'genres' => $genres
         ]);

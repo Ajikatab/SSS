@@ -16,7 +16,7 @@
                     <div class="form-floating">
                         <input type="username" name='username' class="form-control @error('username') is-invalid @enderror"
                             id="username" placeholder="Username" autofocus required value="{{ old('username') }}">
-                        <label for="floatingInput">Username </label>
+                        <label for="username">Username </label>
                         @error('username')
                             <div class="invalid-feedback">
                                 {{ $message }}
