@@ -2,6 +2,11 @@
 
 @section('container')
     <h1>Movies Reviews</h1>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="row">
         @foreach ($reviews as $review)

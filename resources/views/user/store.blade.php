@@ -4,7 +4,9 @@
     <div class='gambar'>
         @foreach ($stores as $store)
             <div class='foto'>
-                <img src='img/jam1.jpg'>
+                @if (isset($store->image))
+                    <img src="{{ asset('storage/image-store/' . $store->image) }}" alt="Store Image">
+                @endif
                 <h2>{{ $store->name }}</h2>
                 <p>{{ $store->description }}</p>
                 <p>{{ $store->price }}</p> <br>

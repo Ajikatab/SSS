@@ -18,6 +18,6 @@ class UpdateProfileInformationController extends Controller
     {
         $request->user()->update($request->all());
 
-        return redirect()->route('profile.edit')->with('success', 'Profile updated successfully!');
+        return redirect()->route('profile.edit')->with('success', 'Profile Berhasil Diupdate');
     }
 }

@@ -78,8 +78,12 @@ Route::get('/dashboard', function () {
     ]);
 });
 
+Route::get('/dashboard/store', [DashboardMerchandiseController::class, 'index'])->name('store.index');
+Route::get('/dashboard/store/create', [DashboardMerchandiseController::class, 'create'])->name('store.create');
+Route::post('/dashboard/store/store', [DashboardMerchandiseController::class, 'store'])->name('store.store');
 Route::get('/dashboard/store/{id}', [DashboardMerchandiseController::class, 'edit'])->name('store.edit');
 Route::put('/dashboard/store/{id}/update', [DashboardMerchandiseController::class, 'update'])->name('store.update');
+Route::delete('/dashboard/store/{id}', [DashboardMerchandiseController::class, 'destroy'])->name('store.delete');
 
 
 

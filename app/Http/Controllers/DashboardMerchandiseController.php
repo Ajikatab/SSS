@@ -25,7 +25,9 @@ class DashboardMerchandiseController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.store.create', [
+            'title' => 'Create Store',
+        ]);
     }
 
     /**
@@ -33,7 +35,32 @@ class DashboardMerchandiseController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $imageFile = $request->file('image');
+        $fileName = time() . '.' . $imageFile->getClientOriginalExtension();
+        $imagePath = $imageFile->storeAs('image-store', $fileName, 'public');
+
+        // Simpan nama file ke dalam model atau variabel
+        $merchandise = Merchandise::create([
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+            'price' => $validatedData['price'],
+            'stock_quantity' => $validatedData['stock'],
+            'image' => $fileName, // Simpan nama file ke dalam model
+        ]);
+
+        // Redirect atau berikan respons sesuai kebutuhan
+        return redirect('/dashboard/store')->with('success', 'Data Berhasil Ditambah');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -70,12 +97,12 @@ class DashboardMerchandiseController extends Controller
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
-            'stock' => $request->input('stock')
+            'stock_quantity' => $request->input('stock'),
             // Tambahkan kolom lain sesuai kebutuhan
         ]);
 
         // Redirect atau berikan respons sesuai kebutuhan
-        return redirect('/dashboard')->with('success', 'Data updated successfully!');
+        return redirect('/dashboard/store')->with('success', 'Data Berhasil Diupdate');
     }
 
 
@@ -84,6 +111,12 @@ class DashboardMerchandiseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $store = Merchandise::find($id);
+
+        // Hapus data spesifik jika diperlukan
+        $store->delete();
+
+        // Redirect atau berikan respons sesuai kebutuhan
+        return redirect('/dashboard/store')->with('success', 'Data Berhasil Dihapus');
     }
 }

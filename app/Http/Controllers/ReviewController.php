@@ -55,6 +55,6 @@ class ReviewController extends Controller
         $reviews->save();
 
         // Redirect to a success page or any other page
-        return redirect('user/community')->with('success', 'Post created successfully');
+        return redirect('user/community')->with('success', 'Review Berhasil Dibuat');
     }
 }
