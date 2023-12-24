@@ -10,6 +10,7 @@ use App\Http\Controllers\SeassionController;
 use App\Http\Controllers\UpdateProfileInformationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MerchandiseController;
+use App\Http\Controllers\MovieController;
 use App\Models\Genre;
 
 /*
@@ -26,6 +27,7 @@ use App\Models\Genre;
 
 // Rute yang dapat diakses oleh semua orang
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/movie/{id}', [MovieController::class, 'show'])->name('movies.show');
 Route::get('/login', [SeassionController::class, 'login'])->name('login');
 Route::post('/login', [SeassionController::class, 'authenticate']);
 Route::post('/logout', [SeassionController::class, 'logout'])->name('logout');
