@@ -37,12 +37,11 @@
         <div class="cart-total">
             <strong>Total:</strong> RP <span class="total-amount">0</span>
         </div>
-        <button class="btn-checkout"" type="submit">Checkout</button>
+        <button class="btn-checkout" type="submit" form="checkout-form">Checkout</button>
 
         <!-- Formulir Checkout -->
-        <form action="/process-checkout" method="post" class="checkout-form">
+        <form action="{{ route('process.checkout') }}" method="post" class="checkout-form">
             @csrf
-
             <!-- Informasi Pengiriman -->
             <h3>Informasi Pengiriman</h3>
             <div class="form-group">
@@ -65,17 +64,19 @@
             <!-- Tombol Submit Checkout -->
             <button id="pay-button" class="btn" type="submit"
                 data-snap-token="{{ session('checkout.snap_token') }}">Proses Checkout</button>
+
         </form>
     </section>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script type="text/javascript">
-        document.getElementById('pay-button').onclick = function() {
-            // SnapToken acquired from previous step
-            var snapToken = this.getAttribute('data-snap-token');
-            snap.pay(snapToken);
-        };
+        $(document).ready(function() {
+            $('#pay-button').on('click', function() {
+                // Submit formulir secara manual
+                $('#checkoutForm').submit();
+            });
+        });
     </script>
     <script>
         $(document).ready(function() {
@@ -189,17 +190,22 @@
 
             function sendCartToServer(cart) {
                 var totalAmount = calculateTotalAmount(cart);
+                var image = cart.length > 0 ? cart[0].image :
+                    ''; // Ambil image dari item pertama (menggantinya dengan logika yang sesuai)
 
                 // Kirim data ke server menggunakan AJAX
                 $.ajax({
                     url: '/process-checkout', // Ganti dengan endpoint Laravel yang sesuai
                     method: 'POST',
                     data: {
+                        _token: '{{ csrf_token() }}',
                         cart: cart,
-                        totalAmount: totalAmount
+                        totalAmount: totalAmount,
+                        image: image
                     },
                     success: function(response) {
                         console.log('Cart updated successfully:', response);
+                        // window.location.href = '/confirmation';
                     },
                     error: function(error) {
                         console.error('Error updating cart:', error);
@@ -218,8 +224,6 @@
                 // Menampilkan formulir checkout
                 $('.checkout-form').show();
             });
-
-
         });
     </script>
 @endsection

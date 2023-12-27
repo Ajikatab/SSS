@@ -53,7 +53,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/genre/create', [ReviewController::class, 'create'])->name('posts.create');
     Route::post('/user/genre', [ReviewController::class, 'store'])->name('posts.store');
     Route::get('/user/checkout', [CheckoutController::class, 'showForm']);
-    Route::post('/process-checkout', [CheckoutController::class, 'processCheckout']);
+    Route::post('/process-checkout', [CheckoutController::class, 'processCheckout'])->name('process.checkout');
+    Route::post('/confirmation', [CheckoutController::class, 'confirmation'])->name('confirmation');
+    Route::get('/confirmation/{id}', [CheckoutController::class, 'showConfirmationPage'])->name('confirmation.page');
 });
 
 // Rute-rute lainnya yang dapat diakses oleh semua orang
