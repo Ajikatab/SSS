@@ -1,13 +1,14 @@
 @extends('user.layouts.main')
 
 @section('container')
-    <h1>Genre</h1>
-    @foreach ($genres as $genre)
+    <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <a href="{{ url('user/genre/' . strtolower($genre->category_name)) }}"
-                    class="genre-button">{{ $genre->category_name }}</a>
-            </div>
+            <h1>Genre</h1>
+            <ul>
+                @foreach ($genres as $id => $name)
+                    <li><a href="{{ route('genres.show', ['name' => $name]) }}">{{ $name }}</a></li>
+                @endforeach
+            </ul>
         </div>
-    @endforeach
+    </div>
 @endsection

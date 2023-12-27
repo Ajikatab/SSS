@@ -1,6 +1,6 @@
 <!-- Navbar  -->
 <header>
-    <a href="#home" class="navbar-brand center"> <i class="bx bxs-movie"></i> Silver Screen Saga</a>
+    <a href="/" class="navbar-brand center"> <i class="bx bxs-movie"></i> Silver Screen Saga</a>
     <div class="bx bx-menu" id="menu-icon"></div>
 
     <!-- menu  -->

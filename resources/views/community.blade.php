@@ -1,25 +1,29 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="container mt-4">
-        <h1>Movie Reviews</h1>
+    <div style="margin-top: 50px; margin-bottom: 20px;">
+        <h1 style="margin-bottom: 20px;">Movie Reviews</h1>
 
-        <div class="row">
+        <div style="display: flex; flex-wrap: wrap;">
             @foreach ($reviews as $review)
-                <div class="col-md-6 mb-4">
-                    <div class="card">
-                        <div class="row no-gutters">
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $review->username }}</h5>
-                                    <p class="card-text">{{ $review->comment }}</p>
-                                    <p class="card-text"><small
-                                            class="text-muted">{{ $review->created_at->DiffForHumans() }}</small></p>
-                                    <p class="card-text">Rating: {{ $review->rating }}</p>
+                <div style="width: calc(50% - 20px); margin-right: 20px; margin-bottom: 20px;">
+                    <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+                        <div style="width: 100%;">
+                            <div style="width: 66.66%; float: left;">
+                                <div style="padding: 15px;">
+                                    <h5 style="margin-bottom: 10px;">{{ $review->username }}</h5>
+                                    <p style="margin-bottom: 10px;">{{ $review->comment }}</p>
+                                    <p style="margin-bottom: 10px;"><small
+                                            style="color: #777;">{{ $review->created_at->diffForHumans() }}</small></p>
+                                    <p style="margin-bottom: 0;">Rating: {{ $review->rating }}</p>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <img src="{{ $review->image }}" class="card-img" alt="{{ $review->username }}">
+                            <div style="width: 100%;">
+                                @if ($review->tmdb_image)
+                                    <img src="{{ $review->tmdb_image }}" style="width: 100%;" alt="{{ $review->username }}">
+                                @else
+                                    <p>No image available</p>
+                                @endif
                             </div>
                         </div>
                     </div>

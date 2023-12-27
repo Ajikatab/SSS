@@ -2,14 +2,13 @@
 
 @section('container')
     <div class="container">
-        <h1>Genre</h1>
-        @foreach ($genres as $genre)
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="{{ url('genre/' . strtolower($genre->category_name)) }}"
-                        class="genre-button">{{ $genre->category_name }}</a>
-                </div>
-            </div>
+        <div class="row">
+            <h1>Genre</h1>
+            <ul>
+                @foreach ($genres as $id => $name)
+                    <li><a href="{{ route('genres.show', ['name' => $name]) }}">{{ $name }}</a></li>
+                @endforeach
+            </ul>
+        </div>
     </div>
-    @endforeach
 @endsection

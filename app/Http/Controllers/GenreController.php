@@ -5,27 +5,105 @@ namespace App\Http\Controllers;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Carbon;
 
 class GenreController extends Controller
 {
     public function index()
     {
-        // Lakukan sesuatu berdasarkan jenis genre yang diberikan
-        // Contoh: tampilkan view yang sesuai dengan genre
-        $genre = Genre::all();
+        $response = Http::withToken(config('services.tmdb.api'))->get('https://api.themoviedb.org/3/genre/movie/list');
+
+        // Tampilkan respons JSON untuk memeriksa data yang diterima dari TMDb
+        // dd($response->json());
+
+        $genresArray = $response->json()['genres'];
+        $genres = collect($genresArray)->mapWithKeys(function ($genre) {
+            return [$genre['id'] => $genre['name']];
+        });
+
         return view('genre', [
             'title' => 'Genre',
-            'genres' => $genre
+            'genres' => $genres,
         ]);
     }
-    public function userHome()
+    public function userHome($name)
     {
-        $genre = Genre::all();
+        // Fetch genre data from TMDB
+        $response = Http::withToken(config('services.tmdb.api'))
+            ->get("https://api.themoviedb.org/3/genre/movie/list")
+            ->json();
+
+        $genres = collect($response['genres']);
+
+        // Find the genre by name
+        $genre = $genres->firstWhere('name', $name);
+
+        if (!$genre) {
+            abort(404); // Handle the case where the genre is not found
+        }
+
+        $title = $genre['name'];
+
+        // Fetch movies for the specific genre
+        $moviesResponse = Http::withToken(config('services.tmdb.api'))
+            ->get("https://api.themoviedb.org/3/discover/movie", [
+                'with_genres' => $genre['id'],
+            ])
+            ->json();
+
+        $movies = $moviesResponse['results'];
+
+        // Fetch all genres for the sidebar
+        $allGenres = collect(Http::withToken(config('services.tmdb.api'))
+            ->get("https://api.themoviedb.org/3/genre/movie/list")
+            ->json()['genres']);
+
+        // Fetch user data
         $user = Auth::user();
-        return view('user.genre', [
-            'title' => 'Genre',
+
+        return view('user.genre.show', [
+            'title' => $title,
             'user' => $user,
-            'genres' => $genre
+            'genres' => $allGenres,
+            'genreId' => $genre['id'],
+            'videos' => $movies,
+        ]);
+    }
+
+
+    public function show($name)
+    {
+        // Fetch genre data from TMDB
+        $response = Http::withToken(config('services.tmdb.api'))
+            ->get("https://api.themoviedb.org/3/genre/movie/list")
+            ->json();
+
+        $genres = collect($response['genres']);
+
+        // Find the genre by name
+        $genre = $genres->firstWhere('name', $name);
+
+        if (!$genre) {
+            abort(404); // Handle the case where the genre is not found
+        }
+
+        $title = $genre['name'];
+
+        // Fetch movies for the specific genre
+        $moviesResponse = Http::withToken(config('services.tmdb.api'))
+            ->get("https://api.themoviedb.org/3/discover/movie", [
+                'with_genres' => $genre['id'],
+            ])
+            ->json();
+
+        $movies = $moviesResponse['results'];
+        // dd($movies);
+
+        return view('genre.show', [
+            'genreId' => $genre['id'],
+            'title' => $title,
+            'videos' => $movies,
         ]);
     }
 }

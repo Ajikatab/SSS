@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardGenreController;
 use App\Http\Controllers\DashboardMerchandiseController;
 use App\Http\Controllers\DashboardMovieController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewController;
@@ -35,42 +37,23 @@ Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/community', [ReviewController::class, 'index']);
 Route::get('/store', [MerchandiseController::class, 'index']);
-Route::get('/genre/{genre}', function ($genre) {
-    return view('genre.' . strtolower($genre), [
-        'title' => $genre
-    ]);
-});
-Route::get('/genre', function () {
-    $genres = Genre::all();
-    return view('genre', [
-        'title' => 'Genre',
-        'genres' => $genres
-    ]);
-});
+Route::get('/genre', [GenreController::class, 'index']);
+Route::get('/genre/{name}', [GenreController::class, 'show'])->name('genres.show');
 
 
 // Rute-rute dengan middleware 'auth' (hanya dapat diakses oleh pengguna yang sudah login)
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/home', [HomeController::class, 'userHome'])->name('user.home');
-    Route::get('/genre/{genre}', function ($genre) {
-        return view('genre.' . strtolower($genre), [
-            'title' => $genre
-        ]);
-    })->name('user.genre');
-    Route::get('/user/genre', function () {
-        $genres = Genre::all();
-        return view('user.genre', [
-            'title' => 'Genre',
-            'genres' => $genres
-        ]);
-    })->name('user.genre');
+    Route::get('/user/genre', [GenreController::class, 'index'])->name('user.genres'); // ini masih error
+    // Route::get('/user/genre/{name}', [GenreController::class, 'userHome'])->name('genres.show'); // ini juga
     Route::get('/user/community', [ReviewController::class, 'userHome'])->name('user.community');
-    Route::get('edit', [UpdateProfileInformationController::class, 'edit'])->name('profile.edit');
-    Route::put('update', [UpdateProfileInformationController::class, 'update'])->name('profile.update');
+    Route::get('/user/edit', [UpdateProfileInformationController::class, 'edit'])->name('profile.edit');
+    Route::put('/user/update', [UpdateProfileInformationController::class, 'update'])->name('profile.update');
     Route::get('/user/store', [MerchandiseController::class, 'userHome'])->name('user.store');
-
-    Route::get('/genre/create', [ReviewController::class, 'create'])->name('posts.create');
-    Route::post('/genre', [ReviewController::class, 'store'])->name('posts.store');
+    Route::get('/user/genre/create', [ReviewController::class, 'create'])->name('posts.create');
+    Route::post('/user/genre', [ReviewController::class, 'store'])->name('posts.store');
+    Route::get('/user/checkout', [CheckoutController::class, 'showForm']);
+    Route::post('/process-checkout', [CheckoutController::class, 'processCheckout']);
 });
 
 // Rute-rute lainnya yang dapat diakses oleh semua orang

@@ -1,51 +1,51 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-5">
-                <main class="form-register">
-                    <form action="/register" method="post">
-                        @csrf
-                        <h1 class="h3 mb-3 fw-normal text-center">Registration Form</h1>
-                        <div class="form-floating">
-                            <input type="text" name='username'
-                                class="form-control rounded-top @error('username') is-invalid @enderror" id="username"
-                                placeholder="Username" required value="{{ old('username') }}">
-                            <label for="floatingInput">Username </label>
-                            @error('username')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+    <div style="margin-top: 4rem;">
+        <main style="max-width: 20rem; margin: auto;">
+            <form action="/register" method="post">
+                @csrf
+                <h1 style="margin-bottom: 1.5rem; text-align: center; font-size: 1.5rem; font-weight: normal;">Registration
+                    Form</h1>
+                <div style="margin-bottom: 1.5rem;">
+                    <input type="text" name='username'
+                        style="width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .2rem; border: 1px solid #ced4da;"
+                        id="username" placeholder="Username" required value="{{ old('username') }}">
+                    @error('username')
+                        <div
+                            style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: .25rem; padding: .75rem 1.25rem; margin-top: .5rem;">
+                            {{ $message }}
                         </div>
-                        <div class="form-floating mt-3">
-                            <input type="email" name='email'
-                                class="form-control rounded-top @error('email') is-invalid @enderror" id="email"
-                                placeholder="name@example.com" required value="{{ old('email') }}">
-                            <label for="email">Email Address </label>
-                            @error('email')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                    @enderror
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <input type="email" name='email'
+                        style="width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .2rem; border: 1px solid #ced4da;"
+                        id="email" placeholder="name@example.com" required value="{{ old('email') }}">
+                    @error('email')
+                        <div
+                            style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: .25rem; padding: .75rem 1.25rem; margin-top: .5rem;">
+                            {{ $message }}
                         </div>
-                        <div class="form-floating mt-3">
-                            <input type="password" name='password'
-                                class="form-control rounded-top @error('password') is-invalid @enderror" id="password"
-                                placeholder="Password" required value="{{ old('password') }}">
-                            <label for="floatingPassword">Password</label>
-                            @error('password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                    @enderror
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <input type="password" name='password'
+                        style="width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .2rem; border: 1px solid #ced4da;"
+                        id="password" placeholder="Password" required value="{{ old('password') }}">
+                    @error('password')
+                        <div
+                            style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: .25rem; padding: .75rem 1.25rem; margin-top: .5rem;">
+                            {{ $message }}
                         </div>
-                        <button class="btn btn-primary w-100 py-2 mt-3" type="submit">Register</button>
-                    </form>
-                    <small class="d-block text-center mt-3">Already Registered? <a href="/login">Login now!</a></small>
-                </main>
-            </div>
-        </div>
+                    @enderror
+                </div>
+                <button
+                    style="width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .2rem; border: none; color: #fff; background-color: #007bff; cursor: pointer;"
+                    type="submit">Register</button>
+            </form>
+            <small style="display: block; text-align: center; margin-top: .75rem;">Already Registered? <a href="/login"
+                    style="color: #007bff; text-decoration: none;">Login now!</a></small>
+        </main>
     </div>
 @endsection

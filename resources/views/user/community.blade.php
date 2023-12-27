@@ -1,62 +1,103 @@
 @extends('user.layouts.main')
 
 @section('container')
-    <h1>Movies Reviews</h1>
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+    <div style="margin-top: 50px; margin-bottom: 20px;">
+        <h1 style="margin-bottom: 20px;">Movie Reviews</h1>
+        @if (session('success'))
+            <div
+                style="background-color: #dff0d8; border: 1px solid #3c763d; color: #3c763d; padding: 15px; margin-bottom: 20px;">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    <div class="row">
-        @foreach ($reviews as $review)
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $review->username }}</h5>
-                                <p class="card-text">{{ $review->comment }}</p>
-                                <p class="card-text"><small
-                                        class="text-muted">{{ $review->created_at->DiffForHumans() }}</small></p>
-                                <p class="card-text">Rating: {{ $review->rating }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <img src="{{ $review->image }}" class="card-img" alt="{{ $review->username }}">
+        <div style="display: flex; flex-wrap: wrap;">
+            @foreach ($reviews as $review)
+                <div
+                    style="width: calc(50% - 20px); margin-right: 20px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+                    <div style="width: 66.66%; float: left;">
+                        <div style="padding: 15px;">
+                            <h5 style="margin-bottom: 10px;">{{ $review->username }}</h5>
+                            <p style="margin-bottom: 10px;">{{ $review->comment }}</p>
+                            <p style="margin-bottom: 10px; color: #777;">{{ $review->created_at->diffForHumans() }}</p>
+                            <p style="margin-bottom: 0;">Rating: {{ $review->rating }}</p>
                         </div>
                     </div>
+                    <div style="width: 100%;">
+                        @if ($review->tmdb_image)
+                            <img src="{{ $review->tmdb_image }}" style="width: 100%;" alt="{{ $review->username }}">
+                        @else
+                            <p style="text-align: center; margin: 10px 0;">No image available</p>
+                        @endif
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
 
     <!-- Form untuk Create Post -->
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <h2>Review Baru</h2>
-            <form action="{{ route('posts.store') }}" method="post">
-                @csrf
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username"
-                        value="{{ auth()->user()->username }}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="comment">Comment</label>
-                    <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="rating">Rating</label>
-                    <input type="number" class="form-control" id="rating" name="rating" min="1" max="5"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="image">Image URL</label>
-                    <input type="url" class="form-control" id="image" name="image" required>
-                </div>
-                <button type="submit" class="btn btn-primary mt-3">Submit</button>
-            </form>
-        </div>
+    <div style="margin-top: 20px;">
+        <h2>Review Baru</h2>
+        <form action="{{ route('posts.store') }}" method="post">
+            @csrf
+            <div style="margin-bottom: 20px;">
+                <label for="username">Username</label>
+                <input type="text" style="width: 100%;" id="username" name="username"
+                    value="{{ auth()->user()->username }}" readonly>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="comment">Comment</label>
+                <textarea style="width: 100%;" id="comment" name="comment" rows="5" required></textarea>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="rating">Rating</label>
+                <input type="number" style="width: 100%;" id="rating" name="rating" min="1" max="5"
+                    required>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="image">Image URL</label>
+                <input type="url" style="width: 100%;" id="image" name="image" required>
+            </div>
+            <button type="submit"
+                style="background-color: #337ab7; color: #fff; padding: 10px 15px; border: none; cursor: pointer;">Submit</button>
+        </form>
     </div>
 @endsection
+
+
+<style>
+    .reviews-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .review-item {
+        width: calc(50% - 20px);
+        margin-right: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .user-info {
+        width: 66.66%;
+        float: left;
+        padding: 15px;
+    }
+
+    .user-info h5 {
+        margin-bottom: 10px;
+    }
+
+    .user-info p {
+        margin-bottom: 10px;
+    }
+
+    .review-image img {
+        width: 100%;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+</style>

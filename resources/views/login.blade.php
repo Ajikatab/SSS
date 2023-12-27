@@ -1,54 +1,54 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-5">
-                @if (session()->has('status'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('status') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-                <main class="form-signin">
-                    <form action="/login" method="post">
-                        @csrf
-                        <h1 class="h3 mb-3 fw-normal text-center">Please Login</h1>
-                        <div class="form-floating mt-3">
-                            <input type="username" name='username'
-                                class="form-control @error('username') is-invalid @enderror" id="username"
-                                placeholder="Username" autofocus required value="{{ old('username') }}">
-                            <label for="username">Username </label>
-                            @error('username')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-floating mt-3">
-                            <input type="password" name="password"
-                                class="form-control @error('password') is-invalid @enderror" id="password"
-                                placeholder="Password" required>
-                            <label for="password">Password</label>
-                            @error('password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="form-check text-start my-3">
-                            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Remember me
-                            </label>
-                        </div>
-                        <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
-                    </form>
-                    <small class="d-block text-center mt-3">Don't have an account? <a href="/register">Make an account
-                            now!</a></small>
-                </main>
+    <div style="margin-top: 4rem;">
+        @if (session()->has('status'))
+            <div
+                style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: .25rem; padding: .75rem 1.25rem; margin-bottom: 1rem;">
+                {{ session('status') }}
             </div>
-        </div>
+        @endif
+        <main style="max-width: 20rem; margin: auto;">
+            <form action="/login" method="post">
+                @csrf
+                <h1 style="margin-bottom: 1.5rem; text-align: center; font-size: 1.5rem; font-weight: normal;">Please Login
+                </h1>
+                <div style="margin-bottom: 1.5rem;">
+                    <input type="username" name='username'
+                        style="width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .2rem; border: 1px solid #ced4da;"
+                        id="username" placeholder="Username" autofocus required value="{{ old('username') }}">
+                    @error('username')
+                        <div
+                            style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: .25rem; padding: .75rem 1.25rem; margin-top: .5rem;">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <input type="password" name="password"
+                        style="width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .2rem; border: 1px solid #ced4da;"
+                        id="password" placeholder="Password" required>
+                    @error('password')
+                        <div
+                            style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: .25rem; padding: .75rem 1.25rem; margin-top: .5rem;">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: center;">
+                        <input type="checkbox" class="form-check-input" style="margin-right: .25rem;" value="remember-me"
+                            id="flexCheckDefault">
+                        <label for="flexCheckDefault" style="margin-bottom: 0;">Remember me</label>
+                    </div>
+                </div>
+                <button
+                    style="width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .2rem; border: none; color: #fff; background-color: #007bff; cursor: pointer;"
+                    type="submit">Login</button>
+            </form>
+            <small style="display: block; text-align: center; margin-top: .75rem;">Don't have an account? <a
+                    href="/register" style="color: #007bff; text-decoration: none;">Make an account now!</a></small>
+        </main>
     </div>
 @endsection
