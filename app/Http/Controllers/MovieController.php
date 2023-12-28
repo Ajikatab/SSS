@@ -19,6 +19,11 @@ class MovieController extends Controller
 
         // Get the first video key (assuming it's a YouTube key)
         $trailerLink = isset($videos[0]['key']) ? "https://www.youtube.com/watch?v={$videos[0]['key']}" : null;
+        $recommendedMoviesResponse = Http::withToken(config('services.tmdb.api'))
+            ->get("https://api.themoviedb.org/3/movie/{$id}/recommendations")
+            ->json();
+
+        $recommendedMovies = $recommendedMoviesResponse['results'];
 
         // dd($movieDetails);
 
@@ -26,6 +31,7 @@ class MovieController extends Controller
             'title' => $movieDetails['title'], // Tambahkan judul ke dalam array
             'movieDetails' => $movieDetails,
             'trailerLink' => $trailerLink,
+            'recommendedMovies' => $recommendedMovies,
         ]);
     }
 }
