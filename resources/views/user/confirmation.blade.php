@@ -26,10 +26,10 @@
                 </div>
 
                 <!-- Button Pembayaran -->
-                <button id="pay-now-button" class="btn" type="submit" data-snap-token="{{ $checkoutData->snap_token }}">
-                    Bayar Sekarang
-                </button>
             </form>
+            <button id="pay-now-button" class="btn" type="submit" data-snap-token="{{ $checkoutData->snap_token }}">
+                Bayar Sekarang
+            </button>
         </div>
     @endsection
 
