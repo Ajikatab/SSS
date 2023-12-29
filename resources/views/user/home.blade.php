@@ -19,7 +19,7 @@
                             </span>
                         @endif
                         <h1>{{ $movie['title'] }}</h1>
-                        <a href="{{ route('movies.show', ['id' => $movie['id']]) }}" class="btn">Read More</a>
+                        <a href="{{ route('user.movies.show', ['id' => $movie['id']]) }}" class="btn">Read More</a>
                         <a href="{{ $movie['trailer_link'] }}" class="play" target="_blank">
                             <i class="bx bx-play"></i>
                         </a>
@@ -38,7 +38,7 @@
             <!-- Loop through your TMDb movie data here -->
             @foreach ($MovieList as $movList)
                 <div class="box">
-                    <a href="{{ route('movies.show', ['id' => $movList['id']]) }}">
+                    <a href="{{ route('user.movies.show', ['id' => $movList['id']]) }}">
                         <div class="box-img">
                             <!-- Gunakan poster_path dari TMDb -->
                             <img src="https://image.tmdb.org/t/p/original{{ $movList['poster_path'] }}"
@@ -76,7 +76,7 @@
                 @if ($index < 5)
                     <!-- Tampilkan hanya 5 film pertama -->
                     <div class="box">
-                        <a href="{{ route('movies.show', ['id' => $movTop['id']]) }}">
+                        <a href="{{ route('user.movies.show', ['id' => $movTop['id']]) }}">
                             <div class="box-img">
                                 <!-- Gunakan poster_path dari TMDb -->
                                 <img src="https://image.tmdb.org/t/p/original{{ $movTop['poster_path'] }}"
@@ -114,7 +114,7 @@
                 <!-- Loop through your TMDb coming soon movie data here -->
                 @foreach ($comingSoonMovies as $comingSoonMovie)
                     <div class="swiper-slide box">
-                        <a href="{{ route('movies.show', ['id' => $comingSoonMovie['id']]) }}">
+                        <a href="{{ route('user.movies.show', ['id' => $comingSoonMovie['id']]) }}">
                             <div class="box-img">
                                 <!-- Gunakan poster_path dari TMDb -->
                                 <img src="https://image.tmdb.org/t/p/original{{ $comingSoonMovie['poster_path'] }}"

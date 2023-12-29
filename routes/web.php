@@ -45,8 +45,8 @@ Route::get('/genre/{name}', [GenreController::class, 'show'])->name('genres.show
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/home', [HomeController::class, 'userHome'])->name('user.home');
     Route::get('/user/genre/', [GenreController::class, 'indexHome'])->name('user.genres');
-    Route::get('/user/genre/{name}', [GenreController::class, 'userGenre'])->name('genres.show');
-    Route::get('/user/movie/{id}', [MovieController::class, 'userShow'])->name('movies.show');
+    Route::get('/user/genre/{name}', [GenreController::class, 'userGenre'])->name('user.genres.show');
+    Route::get('/user/movie/{id}', [MovieController::class, 'userShow'])->name('user.movies.show');
     Route::get('/user/community', [ReviewController::class, 'userHome'])->name('user.community');
     Route::get('/user/edit', [UpdateProfileInformationController::class, 'edit'])->name('profile.edit');
     Route::put('/user/update', [UpdateProfileInformationController::class, 'update'])->name('profile.update');

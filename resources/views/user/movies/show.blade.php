@@ -26,7 +26,7 @@
                 <!-- Loop through your recommended movie data here -->
                 @foreach ($recommendedMovies as $recommendedMovie)
                     <div class="swiper-slide box">
-                        <a href="{{ route('movies.show', ['id' => $recommendedMovie['id']]) }}">
+                        <a href="{{ route('user.movies.show', ['id' => $recommendedMovie['id']]) }}">
                             <div class="box-img">
                                 <!-- Use poster_path from TMDb -->
                                 <img src="https://image.tmdb.org/t/p/original{{ $recommendedMovie['poster_path'] }}"

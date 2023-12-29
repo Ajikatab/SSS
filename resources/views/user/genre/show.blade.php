@@ -11,7 +11,7 @@
             @endphp
             @foreach ($videos as $video)
                 <div class="box">
-                    <a href="{{ route('movies.show', ['id' => $video['id']]) }}">
+                    <a href="{{ route('user.movies.show', ['id' => $video['id']]) }}">
                         <div class="box-img">
                             <img src="https://image.tmdb.org/t/p/original{{ $video['poster_path'] }}"
                                 alt="{{ $video['title'] }}" />
