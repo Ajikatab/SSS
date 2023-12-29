@@ -2,13 +2,13 @@
 
 @section('container')
     <div class="container">
-        <div class="row">
+        <div class="button-row">
             <h1>Genre</h1>
-            <ul>
+            <div class="button-container">
                 @foreach ($genres as $id => $name)
-                    <li><a href="{{ route('genres.show', ['name' => $name]) }}">{{ $name }}</a></li>
+                    <a href="{{ route('genres.show', ['name' => $name]) }}" class="genre-button">{{ $name }}</a>
                 @endforeach
-            </ul>
+            </div>
         </div>
     </div>
 @endsection

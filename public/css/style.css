@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 * {
     font-family: "Poppins", sans-serif;
     margin: 0;
@@ -21,6 +22,7 @@ body {
     background: var(--text-color);
     color: var(--bg-color);
 }
+
 header {
     position: fixed;
     width: 100%;
@@ -35,13 +37,16 @@ header {
     text-align: center;
     /* background: var(--main-color); */
 }
+
 header.shadow {
     background: var(--bg-color);
     box-shadow: 0 0 4px rgb(14 55 54/15%);
 }
+
 header.shadow .navbar a {
     color: var(--text-color);
 }
+
 header.shadow .logo {
     color: var(--text-color);
 }
@@ -49,11 +54,15 @@ header.shadow .logo {
 .bx {
     color: var(--main-color);
 }
+
 /* Warna putih pada awalnya */
 .navbar-brand {
-    color: var(--bg-color); /* Ganti dengan warna putih yang diinginkan */
-    text-decoration: none; /* Remove underline */
-    position: relative; /* Add position relative to make ::after absolute positioning work */
+    color: var(--bg-color);
+    /* Ganti dengan warna putih yang diinginkan */
+    text-decoration: none;
+    /* Remove underline */
+    position: relative;
+    /* Add position relative to make ::after absolute positioning work */
 }
 
 /* Menambahkan efek hover saat di-scroll */
@@ -61,6 +70,7 @@ header.shadow .navbar-brand:hover::after {
     color: var(--text-color);
     width: 100%;
 }
+
 .navbar {
     list-style: none;
     padding: 0;
@@ -68,14 +78,17 @@ header.shadow .navbar-brand:hover::after {
     justify-content: center;
     column-gap: 5rem;
 }
+
 .navbar li {
     position: relative;
 }
+
 .navbar a {
     font-size: 1rem;
     font-weight: 500;
     color: var(--bg-color);
 }
+
 .navbar a::after {
     content: "";
     width: 0;
@@ -86,16 +99,19 @@ header.shadow .navbar-brand:hover::after {
     left: 0;
     transition: 0.4s all linear;
 }
+
 .navbar a:hover::after,
 .navbar .home-active::after {
     width: 100%;
 }
+
 #menu-icon {
     font-size: 24px;
     cursor: pointer;
     z-index: 1000001;
     display: none;
 }
+
 .btn {
     padding: 0.7rem 1.4rem;
     background: var(--main-color);
@@ -103,6 +119,7 @@ header.shadow .navbar-brand:hover::after {
     font-weight: 400;
     border-radius: 0.5rem;
 }
+
 .btn:hover {
     background: #fa1216;
 }
@@ -110,6 +127,7 @@ header.shadow .navbar-brand:hover::after {
 section {
     padding: 4.5rem 0 1.5rem;
 }
+
 .container {
     width: 100%;
     min-height: 640px;
@@ -118,6 +136,7 @@ section {
     align-items: center;
     background: rgb(2, 3, 7, 0.5);
 }
+
 .container img {
     position: absolute;
     width: 100%;
@@ -126,6 +145,7 @@ section {
     object-position: center;
     z-index: -1;
 }
+
 .swiper-pagination-bullet {
     width: 6px !important;
     height: 6px !important;
@@ -133,30 +153,36 @@ section {
     background: var(--bg-color) !important;
     opacity: 1 !important;
 }
+
 .swiper-pagination-bullet-active {
     width: 1.5rem !important;
     background: var(--main-color) !important;
 }
+
 .home-text {
     z-index: 1000;
     padding: 0 150px;
 }
+
 .home-text span {
     color: var(--bg-color);
     font-weight: 500;
     text-transform: uppercase;
 }
+
 .home-text h1 {
     color: var(--bg-color);
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
 }
+
 .play {
     position: absolute;
     right: 4rem;
     bottom: 10%;
 }
+
 .play .bx {
     background: var(--bg-color);
     padding: 10px;
@@ -165,6 +191,7 @@ section {
     border: 4px solid rgb(2, 3, 7, 0.5);
     color: var(--main-color);
 }
+
 .play .bx:hover {
     background: var(--main-color);
     color: var(--bg-color);
@@ -181,6 +208,7 @@ section {
     text-transform: uppercase;
     border-bottom: 1px solid var(--main-color);
 }
+
 .movies-container {
     max-width: 968px;
     margin-right: auto;
@@ -190,24 +218,29 @@ section {
     gap: 1rem;
     margin-top: 2rem;
 }
+
 .box .box-img {
     width: 100%;
     height: 270px;
     cursor: pointer;
 }
+
 .box .box-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .box .box-img img:hover {
     transform: translateY(-10px);
     transition: 0.2s all linear;
 }
+
 .box h3 {
     font-size: 0.9rem;
     font-weight: 500;
 }
+
 .box span {
     font-size: 14px;
 }
@@ -221,9 +254,11 @@ section {
     margin-right: auto;
     margin-top: 2rem;
 }
+
 .coming-container .box img:hover {
     transform: translateY(0);
 }
+
 .coming-container .box img {
     border-radius: 15px;
 }
@@ -233,31 +268,39 @@ section {
         padding: 0 100px;
     }
 }
+
 @media (max-width: 991px) {
     header {
         padding: 18px 4%;
     }
+
     section {
         padding: 50px 4%;
     }
+
     .home-text {
         padding: 0 4%;
     }
+
     .home-text h1 {
         font-size: 3rem;
     }
 }
+
 @media (max-width: 774px) {
     header {
         padding: 12px 4%;
     }
+
     #menu-icon {
         display: initial;
         color: var(--bg-color);
     }
+
     header.shadow #menu-icon {
         color: var(--text-color);
     }
+
     .navbar {
         position: absolute;
         top: -570px;
@@ -273,74 +316,114 @@ section {
         text-align: center;
         width: 100%;
     }
+
     .navbar a {
         color: var(--text-color);
     }
+
     .navbar a:hover {
         color: var(--main-color);
         border-bottom: 1px solid var(--main-color);
     }
+
     .navbar a::after {
         display: none;
     }
+
     .navbar.active {
         top: 100%;
     }
+
     .home-text h1 {
         font-size: 2.4rem;
     }
+
     .btn {
         padding: 0.6rem 1.2rem;
     }
+
     .movies-container {
         grid-template-columns: repeat(auto-fit, minmax(160px, auto));
     }
 }
+
 @media (max-width: 472px) {
     .newsletter form .email {
         width: auto;
     }
+
     .footer {
         flex-direction: column;
         align-items: center;
         row-gap: 1rem;
     }
+
     .container {
         width: 100%;
         min-height: 500px;
     }
+
     header {
         padding: 6px 4%;
     }
+
     .home-text h1 {
         font-size: 1.7rem;
     }
+
     .play {
         right: 2rem;
         bottom: 8%;
     }
+
     .play .bx {
         padding: 7px;
     }
+
     .movies-container {
         grid-template-columns: repeat(auto-fit, minmax(140px, auto));
     }
 }
 
-/* genre */
-.row ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* ----------------------------------------------------------
+
+/* Genre Buttons */
+.button-row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Menambahkan ruang antar item */
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-.row ul li {
-    flex-basis: calc(33.33% - 10px); /* Lebar masing-masing item */
-    background-color: #87ceeb;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+.button-row button,
+.genre-button {
+    width: 30%;
+    margin-bottom: 20px;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.genre-button {
+    display: inline-block;
+    padding: 20px 40px;
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.genre-button:hover {
+    background-color: #3e3e3e;
+}
+
+h1 {
+    margin-top: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    margin-bottom: 20px;
 }
