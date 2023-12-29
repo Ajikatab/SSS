@@ -44,14 +44,15 @@ Route::get('/genre/{name}', [GenreController::class, 'show'])->name('genres.show
 // Rute-rute dengan middleware 'auth' (hanya dapat diakses oleh pengguna yang sudah login)
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/home', [HomeController::class, 'userHome'])->name('user.home');
-    Route::get('/user/genre', [GenreController::class, 'index'])->name('user.genres'); // ini masih error
-    // Route::get('/user/genre/{name}', [GenreController::class, 'userHome'])->name('genres.show'); // ini juga
+    Route::get('/user/genre/', [GenreController::class, 'indexHome'])->name('user.genres');
+    Route::get('/user/genre/{name}', [GenreController::class, 'userGenre'])->name('genres.show');
+    Route::get('/user/movie/{id}', [MovieController::class, 'userShow'])->name('movies.show');
     Route::get('/user/community', [ReviewController::class, 'userHome'])->name('user.community');
     Route::get('/user/edit', [UpdateProfileInformationController::class, 'edit'])->name('profile.edit');
     Route::put('/user/update', [UpdateProfileInformationController::class, 'update'])->name('profile.update');
-    Route::get('/user/store', [MerchandiseController::class, 'userHome'])->name('user.store');
-    Route::get('/user/genre/create', [ReviewController::class, 'create'])->name('posts.create');
-    Route::post('/user/genre', [ReviewController::class, 'store'])->name('posts.store');
+    Route::get('/user/store', [MerchandiseController::class, 'userStore'])->name('user.store');
+    Route::get('/user/community/create', [ReviewController::class, 'create'])->name('posts.create');
+    Route::post('/user/community/store', [ReviewController::class, 'store'])->name('posts.store');
     Route::get('/user/checkout', [CheckoutController::class, 'showForm']);
     Route::post('/process-checkout', [CheckoutController::class, 'processCheckout'])->name('process.checkout');
     Route::post('/confirmation', [CheckoutController::class, 'confirmation'])->name('confirmation');

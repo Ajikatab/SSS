@@ -27,7 +27,7 @@ class GenreController extends Controller
             'genres' => $genres,
         ]);
     }
-    public function userHome($name)
+    public function userGenre($name)
     {
         // Fetch genre data from TMDB
         $response = Http::withToken(config('services.tmdb.api'))
@@ -64,10 +64,31 @@ class GenreController extends Controller
 
         return view('user.genre.show', [
             'title' => $title,
-            'user' => $user,
+            'user' => Auth::user(),
             'genres' => $allGenres,
             'genreId' => $genre['id'],
             'videos' => $movies,
+        ]);
+    }
+
+    public function indexHome()
+    {
+        $response = Http::withToken(config('services.tmdb.api'))->get('https://api.themoviedb.org/3/genre/movie/list');
+
+        // Tampilkan respons JSON untuk memeriksa data yang diterima dari TMDb
+        // dd($response->json());
+
+        $genresArray = $response->json()['genres'];
+        $genres = collect($genresArray)->mapWithKeys(function ($genre) {
+            return [$genre['id'] => $genre['name']];
+        });
+
+        $user = Auth::user();
+
+        return view('user.genre', [
+            'title' => 'Genre',
+            'genres' => $genres,
+            'user' => Auth::user(),
         ]);
     }
 

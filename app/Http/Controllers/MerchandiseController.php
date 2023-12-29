@@ -17,7 +17,7 @@ class MerchandiseController extends Controller
             'stores' => $stores
         ]);
     }
-    public function userHome()
+    public function userStore()
     {
         $stores = Merchandise::all();
         $user = Auth::user();
