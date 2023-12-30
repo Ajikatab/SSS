@@ -418,7 +418,7 @@ section {
     background-color: #3e3e3e;
 }
 
-h1 {
+h1.genre {
     margin-top: 100px;
     text-align: center;
     display: flex;

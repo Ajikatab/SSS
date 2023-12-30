@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class SeassionController extends Controller
 {
@@ -25,10 +26,12 @@ class SeassionController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            if ($user->role === 'admin') {
-                return redirect()->route('dashboard.dashboard'); // Redirect to admin dashboard
-            } elseif ($user->role === 'user') {
-                return redirect()->route('user.home'); // Redirect to user home page
+            if (Hash::check($credentials['password'], $user->password)) {
+                if ($user->role === 'admin') {
+                    return redirect()->route('dashboard.dashboard'); // Redirect to admin dashboard
+                } elseif ($user->role === 'user') {
+                    return redirect()->route('user.home'); // Redirect to user home page
+                }
             }
         }
 

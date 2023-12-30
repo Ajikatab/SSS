@@ -59,21 +59,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/confirmation/{id}', [CheckoutController::class, 'showConfirmationPage'])->name('confirmation.page');
 });
 
-// Rute-rute lainnya yang dapat diakses oleh semua orang
-Route::get('/dashboard', function () {
-    return view('dashboard.dashboard', [
-        "title" => "Dashboard",
-    ]);
+
+Route::group(['middleware' => 'role:admin'], function () {
+    Route::view('/dashboard', 'dashboard.dashboard', ['title' => 'Dashboard'])->name('dashboard.dashboard');
+    Route::get('/dashboard/store', [DashboardMerchandiseController::class, 'index'])->name('store.index');
+    Route::get('/dashboard/store/create', [DashboardMerchandiseController::class, 'create'])->name('store.create');
+    Route::post('/dashboard/store/store', [DashboardMerchandiseController::class, 'store'])->name('store.store');
+    Route::get('/dashboard/store/{id}', [DashboardMerchandiseController::class, 'edit'])->name('store.edit');
+    Route::put('/dashboard/store/{id}/update', [DashboardMerchandiseController::class, 'update'])->name('store.update');
+    Route::delete('/dashboard/store/{id}', [DashboardMerchandiseController::class, 'destroy'])->name('store.delete');
 });
-
-Route::get('/dashboard/store', [DashboardMerchandiseController::class, 'index'])->name('store.index');
-Route::get('/dashboard/store/create', [DashboardMerchandiseController::class, 'create'])->name('store.create');
-Route::post('/dashboard/store/store', [DashboardMerchandiseController::class, 'store'])->name('store.store');
-Route::get('/dashboard/store/{id}', [DashboardMerchandiseController::class, 'edit'])->name('store.edit');
-Route::put('/dashboard/store/{id}/update', [DashboardMerchandiseController::class, 'update'])->name('store.update');
-Route::delete('/dashboard/store/{id}', [DashboardMerchandiseController::class, 'destroy'])->name('store.delete');
-
-
 
 Route::resource('/dashboard/genre', DashboardGenreController::class);
 Route::resource('/dashboard/store', DashboardMerchandiseController::class);
