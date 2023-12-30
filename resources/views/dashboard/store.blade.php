@@ -44,8 +44,8 @@
                                 @method('DELETE')
                             </form>
 
-                            <a href="#" class="badge bg-danger"
-                                onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
+                            <a href="{{ route('store.delete', $store->id) }}" class="badge bg-danger delete-btn"
+                                onclick="event.preventDefault();">
                                 <i class="bi bi-x-circle"></i>
                             </a>
                         </td>
@@ -55,3 +55,27 @@
         </table>
     </div>
 @endsection
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.delete-btn').on('click', function(e) {
+            e.preventDefault();
+
+            var link = $(this).data('delete-form');
+
+            Swal.fire({
+                title: "Apakah Yakin Untuk Dihapus?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form').submit();
+                }
+            });
+        });
+    });
+</script>
