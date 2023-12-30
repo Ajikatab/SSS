@@ -170,9 +170,51 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="/js/dashboard.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Theme toggle functionality
+            $('.dropdown-item').on('click', function() {
+                // Remove the 'active' class and hide the checkmark from all items
+                $('.dropdown-item').removeClass('active');
+                $('.dropdown-item .bi-check2').addClass('d-none');
+
+                // Add the 'active' class and show the checkmark for the selected item
+                $(this).addClass('active');
+                $(this).find('.bi-check2').removeClass('d-none');
+
+                // Get the selected theme value
+                var selectedTheme = $(this).data('bs-theme-value');
+
+                // Apply the selected theme (You can customize this part)
+                if (selectedTheme === 'light') {
+                    // Apply light theme
+                    $('body').removeClass('dark-theme').addClass('light-theme');
+                } else if (selectedTheme === 'dark') {
+                    // Apply dark theme
+                    $('body').removeClass('light-theme').addClass('dark-theme');
+                } else {
+                    // Apply auto theme (or your default theme)
+                    $('body').removeClass('light-theme dark-theme');
+                }
+            });
+        });
+    </script>
+    <style>
+        /* Define your theme styles here */
+        body.light-theme {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        body.dark-theme {
+            background-color: #121212;
+            color: #ffffff;
+        }
+    </style>
 </body>
 
 </html>
