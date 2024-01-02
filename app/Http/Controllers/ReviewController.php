@@ -36,15 +36,6 @@ class ReviewController extends Controller
     // Store a new post
     public function store(Request $request)
     {
-        // Validate the form data
-        // $request->validate([
-        //     'username' => 'required|string|max:255',
-        //     'comment' => 'required|string',
-        //     'review_date' => 'required|date',
-        //     'rating' => 'required|numeric|min:1|max:5',
-        //     'image' => 'required|url',
-        // ]);
-
         // Create a new post
         $reviews = new Review();
         $reviews->username = $request->username;
