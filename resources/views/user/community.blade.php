@@ -92,11 +92,7 @@
         movies.forEach(movie => {
             const movieDiv = document.createElement('div');
             movieDiv.innerHTML = `
-            <div>
-                <input type="radio" name="selectedMovie" value="${movie.id}" id="movie${movie.id}" onclick="updateSelectedMovie(${movie.id}, '${movie.title}', '${movie.poster_path}')">
-                <label for="movie${movie.id}">${movie.title}</label>
-            </div>
-            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" style="width: 150px;" alt="${movie.title}">
+            <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title}" style="width: 150px; height: auto; display: block; margin: 0 auto;">
             <br>
         `;
             movieResultsDiv.appendChild(movieDiv);
