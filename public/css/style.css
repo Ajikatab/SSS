@@ -12,7 +12,7 @@
 }
 
 :root {
-    --main-color: #ff2c1f;
+    --main-color: #14b8b8;
     --text-color: #020307;
     --bg-color: #fff;
     --primary: #b6895b;
@@ -66,9 +66,8 @@ header.shadow .logo {
 }
 
 /* Menambahkan efek hover saat di-scroll */
-header.shadow .navbar-brand:hover::after {
+header.shadow .navbar-brand {
     color: var(--text-color);
-    width: 100%;
 }
 
 .navbar {
@@ -207,7 +206,8 @@ section {
     font-weight: 500;
     text-transform: uppercase;
     border-bottom: 1px solid var(--main-color);
-}
+    text-align: center;
+    }
 
 .movies-container {
     max-width: 968px;
@@ -229,7 +229,7 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
+    }
 
 .box .box-img img:hover {
     transform: translateY(-10px);
@@ -407,19 +407,32 @@ section {
 .genre-button {
     display: inline-block;
     padding: 20px 40px;
-    background-color: #ff0000;
+    background-color: #a9a9a9;
     color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
     border-radius: 10px;
     text-align: center;
     margin-left: 30px;
 }
 
 .genre-button:hover {
-    background-color: #3e3e3e;
+    background-color: #14b8b8;
 }
 
 h1.genre {
-    margin-top: 120px;
+    margin-top: 77px;
+}
+
+@media only screen and (max-width: 768px) {
+    .button-row button,
+    .genre-button {
+        width: 48%; /* Mengubah lebar tombol untuk layar yang lebih kecil */
+    }
+
+    .genre-button {
+        margin-left: 0; /* Menghapus margin kiri pada tombol */
+    }
 }
 
 /* LOGIN */
@@ -430,7 +443,7 @@ section.seclog {
     min-height: 100vh;
     width: 100%;
 
-    background: url("/img/background.jpg") no-repeat;
+    background: url("/img/cinema.jpg") no-repeat;
     background-position: center;
     background-size: cover;
 }

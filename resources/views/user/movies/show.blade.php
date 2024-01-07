@@ -105,4 +105,27 @@
     .trailer-button:hover {
         background-color: #2779bd;
     }
+
+/* Penyesuaian untuk perangkat mobile */
+@media only screen and (max-width: 768px) {
+    .movie-details-container {
+        flex-direction: column; /* Mengubah tata letak menjadi stacked di perangkat mobile */
+    }
+
+    .movie-poster {
+        margin-left: -68px; /* Menghapus margin kanan pada poster */
+    }
+
+    .movie-info {
+        padding: 10px; /* Mengurangi padding pada informasi film */
+    }
+
+    h1 {
+        font-size: 20px; /* Mengurangi ukuran font judul */
+    }
+
+    .overview {
+        font-size: 14px; /* Mengurangi ukuran font deskripsi */
+    }
+}
 </style>
