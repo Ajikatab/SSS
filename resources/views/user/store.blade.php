@@ -244,9 +244,9 @@
         bottom: 20px;
         right: 20px;
         width: 300px;
-        background-color: #FF0000;
+        background-color: #14b8b8;
         /* Ganti dengan warna sesuai tema web Anda */
-        border: 1px solid #CCCCCC;
+        border: 1px solid #000000;
         /* Ganti dengan warna sesuai tema web Anda */
         padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
