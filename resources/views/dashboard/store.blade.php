@@ -34,20 +34,24 @@
                         <td>{{ $store->price }}</td>
                         <td>{{ $store->stock_quantity }}</td>
                         <td>
-                            <a href="{{ route('store.update', ['store' => $store->id]) }}" method="post"
-                                class="badge bg-info"><i class="bi bi-eye"></i></a>
-                            <a href="{{ route('store.store', ['store' => $store->id]) }}" class="badge bg-warning"><i
-                                    class="bi bi-pencil-square"></i></a>
-                            <form id="delete-form" action="{{ route('store.delete', ['id' => $store->id]) }}" method="POST"
-                                style="display: none;">
+                            <form action="{{ route('store.update', ['store' => $store->id]) }}" method="put"
+                                style="display: inline;">
                                 @csrf
-                                @method('DELETE')
+                                <button type="submit" class="badge bg-info"
+                                    style="border: none; background-color: transparent; cursor: pointer;">
+                                    Edit
+                                </button>
                             </form>
 
-                            <a href="{{ route('store.delete', $store->id) }}" class="badge bg-danger delete-btn"
-                                onclick="event.preventDefault();">
-                                <i class="bi bi-x-circle"></i>
-                            </a>
+                            <form id="delete-form" action="{{ route('store.delete', ['id' => $store->id]) }}" method="POST"
+                                style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="badge bg-danger delete-btn"
+                                    style="border: none; background-color: transparent; cursor: pointer;">
+                                    Hapus
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
