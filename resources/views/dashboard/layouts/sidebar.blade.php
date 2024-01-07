@@ -17,18 +17,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="/dashboard/movie">
-                        <svg class="bi">
-                            <use xlink:href="#cart" />
-                        </svg>
-                        Movies
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="/dashboard/genre">
-                        <svg class="bi">
-                            <use xlink:href="#cart" />
-                        </svg>
+                        <i class="bi bi-film" style="color: black;"></i>
                         Genre
                     </a>
                 </li>
@@ -36,7 +26,7 @@
                     <li class="nav-item">
                         <a class="nav-link d-flex align-items-center gap-2" href="/dashboard/store">
                             <svg class="bi">
-                                <use xlink:href="#door-closed" />
+                                <use xlink:href="#cart" />
                             </svg>
                             Store
                         </a>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardGenreController;
 use App\Http\Controllers\DashboardMerchandiseController;
 use App\Http\Controllers\DashboardMovieController;
@@ -61,7 +62,16 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::group(['middleware' => 'role:admin'], function () {
-    Route::view('/dashboard', 'dashboard.dashboard', ['title' => 'Dashboard'])->name('dashboard.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard');
+
+    Route::get('/dashboard/genre', [DashboardGenreController::class, 'index'])->name('genres.index');
+    Route::get('/dashboard/genre/create', [DashboardGenreController::class, 'create'])->name('genre.create');
+    Route::post('/dashboard/genre/store', [DashboardGenreController::class, 'store'])->name('genres.store');
+    Route::get('/dashboard/genre/{id}', [DashboardGenreController::class, 'edit'])->name('genres.edit');
+    Route::put('/dashboard/genre/{id}/update', [DashboardGenreController::class, 'update'])->name('genres.update');
+    Route::delete('/dashboard/genre/{id}', [DashboardGenreController::class, 'destroy'])->name('genres.destroy');
+
+
     Route::get('/dashboard/store', [DashboardMerchandiseController::class, 'index'])->name('store.index');
     Route::get('/dashboard/store/create', [DashboardMerchandiseController::class, 'create'])->name('store.create');
     Route::post('/dashboard/store/store', [DashboardMerchandiseController::class, 'store'])->name('store.store');
