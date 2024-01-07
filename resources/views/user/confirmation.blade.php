@@ -2,7 +2,7 @@
 
 @section('container')
     <h2 class="heading" style="margin-top: 50px;">Konfirmasi Pembayaran</h2>
-    <div class="container">
+    <div class="container" style="margin-top: -122px">
 
         <!-- Display the confirmation information here -->
         <div>
@@ -31,50 +31,84 @@
                 Bayar Sekarang
             </button>
         </div>
-    @endsection
+        <div id="thank-you-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <p>Terima kasih telah membayar!</p>
+                <p id="countdown-text">Akan kembali ke halaman toko dalam <span id="countdown">5</span> detik.</p>
+            </div>
+        </div>
+    </div>
+@endsection
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#pay-now-button').on('click', function() {
-                var snapToken = $(this).data('snap-token');
-                snap.pay(snapToken);
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#pay-now-button').on('click', function() {
+            var snapToken = $(this).data('snap-token');
+            snap.pay(snapToken, {
+                onSuccess: function(result) {
+                    // Display thank you message in modal
+                    $('#thank-you-modal').css('display', 'block');
+
+                    // Start countdown
+                    var seconds = 5;
+                    var countdownElement = $('#countdown');
+                    var countdownTextElement = $('#countdown-text');
+
+                    function updateCountdown() {
+                        countdownElement.text(seconds);
+                        countdownTextElement.text('Akan kembali ke halaman toko dalam ' +
+                            seconds + ' detik.');
+                        seconds--;
+
+                        if (seconds < 0) {
+                            $('#thank-you-modal').css('display', 'none');
+                            window.location.href =
+                                '/user/store';
+                        } else {
+                            setTimeout(updateCountdown, 1000);
+                        }
+                    }
+
+                    updateCountdown();
+                },
             });
         });
-    </script>
+    });
+</script>
 
-    <style>
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-        }
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-width: 400px;
-            margin: auto;
-        }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 400px;
+        margin: auto;
+    }
 
-        label {
-            font-weight: bold;
-        }
+    label {
+        font-weight: bold;
+    }
 
-        input {
-            padding: 8px;
-            width: 100%;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            outline: none;
-        }
+    input {
+        padding: 8px;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        outline: none;
+    }
 
-        div {
-            margin-top: 15px;
-        }
-    </style>
+    div {
+        margin-top: 15px;
+    }
+</style>
